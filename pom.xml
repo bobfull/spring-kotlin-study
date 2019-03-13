@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.mircoservices</groupId>
-    <artifactId>chapter2</artifactId>
+    <artifactId>study</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>chapter2</name>
+    <name>study</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
