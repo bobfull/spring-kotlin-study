@@ -1,4 +1,4 @@
-package com.mircoservices.chapter2
+package com.mircoservices.study
 
 import org.junit.Test
 import org.junit.runner.RunWith

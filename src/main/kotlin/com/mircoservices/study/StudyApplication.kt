@@ -1,5 +1,6 @@
-package com.mircoservices.chapter2
+package com.mircoservices.study
 
+import com.mircoservices.study.data.Customer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression
@@ -10,9 +11,21 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.ResponseBody
+import java.util.concurrent.ConcurrentHashMap
 
 @SpringBootApplication
-class Chapter2Application {
+class StudyApplication {
+    companion object {
+        val initialCustomers = arrayOf(Customer(1, "Kotlin"),
+                Customer(2, "Spring"),
+                Customer(3, "Microservice"))
+    }
+
+    @Bean
+    fun customers() = ConcurrentHashMap<Int, Customer>(initialCustomers.associateBy(Customer::id))
+
+
+
     @Bean
     @ConditionalOnExpression("#{'\${service.message.type}'=='simple'}")
     fun exampleService() : ServiceInterface = ExampleService()
@@ -22,21 +35,6 @@ class Chapter2Application {
     fun advanceService() : ServiceInterface = AdvanceService()
 }
 
-@Controller
-class FirstController{
-    @Autowired
-    lateinit var service: ServiceInterface
-
-    @RequestMapping(value = "/user", method = arrayOf(RequestMethod.GET))
-    @ResponseBody
-    fun hello() = "hello world"
-
-    @RequestMapping(value = "/user/{name}", method = arrayOf(RequestMethod.GET))
-    @ResponseBody
-    fun hello2(@PathVariable("name") name: String) = service.getHello(name);
-}
-
-
 fun main(args: Array<String>) {
-    runApplication<Chapter2Application>(*args)
+    runApplication<StudyApplication>(*args)
 }

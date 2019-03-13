@@ -1,4 +1,4 @@
-package com.mircoservices.chapter2
+package com.mircoservices.study
 
 import org.springframework.beans.factory.annotation.Value
 
