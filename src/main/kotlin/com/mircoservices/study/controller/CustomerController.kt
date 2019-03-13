@@ -38,7 +38,6 @@ class CustomerController {
             customerService.deleteCustomer(id)
             status = HttpStatus.OK
         }
-
         return ResponseEntity(Unit, status)
     }
 
