@@ -1,5 +1,6 @@
 package com.mircoservices.study
 
+import com.mircoservices.study.Interface.ServiceInterface
 import org.springframework.beans.factory.annotation.Value
 
 

@@ -1,6 +1,6 @@
 package com.mircoservices.study.controller
 
-import com.mircoservices.study.ServiceInterface
+import com.mircoservices.study.Interface.ServiceInterface
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.PathVariable
