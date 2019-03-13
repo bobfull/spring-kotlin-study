@@ -2,6 +2,7 @@ package com.mircoservices.study.controller
 
 import com.mircoservices.study.Interface.CustomerService
 import com.mircoservices.study.data.Customer
+import com.mircoservices.study.exception.CustomerNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -16,10 +17,11 @@ class CustomerController {
 
     @GetMapping("/customer/{id}")
     fun getCustomer(@PathVariable("id") id: Int): ResponseEntity<Customer?> {
-        val customer = customerService.getCustomer(id)
-        val status = if (customer == null) HttpStatus.NOT_FOUND else HttpStatus.OK
+        val customer = customerService.getCustomer(id)?:
+                throw CustomerNotFoundException("customer '$id' not found")
+      //  val status = if (customer == null) HttpStatus.NOT_FOUND else HttpStatus.OK
 
-        return ResponseEntity(customer, status)
+        return ResponseEntity(customer, HttpStatus.OK)
     }
 
     @PostMapping("/customer/")
